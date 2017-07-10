@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="App">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
@@ -13,7 +13,7 @@
 
         #allmap {
             width: 100%;
-            height: 100%;
+            height: 500px;
         }
 
         .BMap_vectex_node {
@@ -23,72 +23,134 @@
         }
 
     </style>
-    <script type="text/javascript"
-            src="../app/lib/jquery/1.11.3/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript"
-            src="http://api.map.baidu.com/api?v=2.0&ak=PpZVilVQOrUS4oyyF5XroQq6GybcMVUZ"></script>
     <title>圆形区域搜索</title>
 </head>
 <body>
-<div><input type="number" name="" class="setRadio" value=""/></div>
-<div id="allmap"></div>
-<script type="text/javascript">
-    // 百度地图API功能
-    var map = new BMap.Map("allmap");
-    var mPoint = new BMap.Point(113.756082, 34.767741); // 初始化地图中心点
-    var circleArr = []; //存储circle覆盖物的数组
-    var labelArr = []; //存储文本标记的数组
-    var setRadio = $(".setRadio");
-    var label;
-    map.enableScrollWheelZoom();
-    map.centerAndZoom(mPoint, 17);
-    var circle = new BMap.Circle(mPoint, 200, {
-        fillColor: "#E2E8F1",
-        strokeWeight: 1,
-        strokeColor: "blue",
-        fillOpacity: 0.3,
-        enableEditing: true
-    });
-    map.addOverlay(circle);
-    circleArr.push(circle);
-    function showRadius(obj) {
-        //清除全部的文本标记
-        for (var i = 0; i < labelArr.length; i++) {
-            map.removeOverlay(labelArr[i]);
-        }
-        var opts = {
-            position: obj.point, // 指定文本标注所在的地理位置
-            offset: new BMap.Size(10, -11) //设置文本偏移量
-        };
+<div ng-controller="mapController">
+    <div><input type="number" class="setRadio" ng-model="mapRadius" ng-change="numChange(mapRadius)"/></div>
+    <div id="allmap"></div>
+</div>
+<script type="text/javascript" src="../app/lib/jquery/1.11.3/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../app/lib/angular/1.5.0/angular.js"></script>
+<script type="text/javascript"
+        src="http://api.map.baidu.com/api?v=2.0&ak=PpZVilVQOrUS4oyyF5XroQq6GybcMVUZ"></script>
+<script>
+    var app = angular.module('App', [])
+        .controller('mapController', function ($scope) {
+            $scope.mapRadius = 300;
+            $scope.numChange = function (num) {
+                if (num < 0 || num == undefined) return false;
+                //清除圆形覆盖物
+                var i;
+                for (i = 0; i < circleArr.length; i++) {
+                    map.removeOverlay(circleArr[i]);
+                }
+                //清除文本标记
+                for (i = 0; i < labelArr.length; i++) {
+                    map.removeOverlay(labelArr[i]);
+                }
+                //清除完毕后重新制作圆形覆盖物
+                var circle = new BMap.Circle(mPoint, circleRadius, {
+                    fillColor: "#E2E8F1",
+                    strokeWeight: 1,
+                    strokeColor: "blue",
+                    fillOpacity: 0.3,
+                    strokeOpacity: 0.3
+                });
+                var circleRadius = parseInt(num); //获取用户设置的半径值
+                circle.setRadius(circleRadius); //设置圆形覆盖物的半径
+                map.addOverlay(circle); //将圆形覆盖物添加到地图上
+                circle.enableEditing(); //设置圆形覆盖物可编辑
+                circleArr.push(circle); //将该园形覆盖物存于数组中,以便再次设置之前进行清除
+                //调用showRadius方法展示文本标记
+                showRadius({
+                    point: circle.oc[1].point,
+                    radius: circleRadius
+                });
 
-        if (obj.radius) {
-            label = new BMap.Label(obj.radius + '米', opts); // 创建文本标注对象
-            $(setRadio).val(obj.radius); //显示
-        } else {
-            label = new BMap.Label(Math.ceil(circle.getRadius()) + '米', opts); // 创建文本标注对象
-            $(setRadio).val(Math.ceil(circle.getRadius()));
-        }
-        label.setStyle({
-            fontSize: "12px",
-            height: "20px",
-            lineHeight: "20px",
-            fontFamily: "微软雅黑",
-            borderColor: "blue"
-        });
-        map.addOverlay(label);
-        labelArr.push(label);
+                if (mPoint != null) {
+                    //为圆行覆盖物添加监听事件
+                    circle.addEventListener("lineupdate", function (e) {
+                        //为圆上点添加拖拽事件
+                        circle.oc[1].ondragging = function (e) {
+                            for (var i = 0; i < labelArr.length; i++) {
+                                map.removeOverlay(labelArr[i]);
+                            }
+                            var opts = {
+                                position: e.point, // 指定文本标注所在的地理位置
+                                offset: new BMap.Size(10, -10) //设置文本偏移量
+                            };
+                            var label = new BMap.Label(Math.ceil(circle.getRadius()) + '米', opts); // 创建文本标注对象
+                            $(setRadio).val(Math.ceil(circle.getRadius()));
+                            label.setStyle({
+                                fontSize: "12px",
+                                height: "20px",
+                                lineHeight: "20px",
+                                fontFamily: "微软雅黑",
+                                borderColor: "blue"
+                            });
+                            map.addOverlay(label);
+                            labelArr.push(label);
+                        }
 
-    }
+                    });
+                }
+            };
 
-    if (mPoint != null) {
-        circle.addEventListener("lineupdate", function (e) {
-            circle.oc[1].ondragging = showRadius(e);
-            showRadius({
-                point: circle.oc[1].point
+            // 百度地图API功能
+            var map = new BMap.Map("allmap");
+            var mPoint = new BMap.Point(113.756082, 34.767741); // 初始化地图中心点
+            var circleArr = []; //存储circle覆盖物的数组
+            var labelArr = []; //存储文本标记的数组
+            var setRadio = $(".setRadio");
+            var label;
+            map.enableScrollWheelZoom();
+            map.centerAndZoom(mPoint, 17);
+            var circle = new BMap.Circle(mPoint, $scope.mapRadius ? $scope.mapRadius : 200, {
+                fillColor: "#E2E8F1",
+                strokeWeight: 1,
+                strokeColor: "blue",
+                fillOpacity: 0.3,
+                enableEditing: true
             });
-        });
+            map.addOverlay(circle);
+            circleArr.push(circle);
+            function showRadius(obj) {
+                //清除全部的文本标记
+                for (var i = 0; i < labelArr.length; i++) {
+                    map.removeOverlay(labelArr[i]);
+                }
+                var opts = {
+                    position: obj.point, // 指定文本标注所在的地理位置
+                    offset: new BMap.Size(10, -11) //设置文本偏移量
+                };
 
-    }
+                if (obj.radius) {
+                    label = new BMap.Label(obj.radius + '米', opts); // 创建文本标注对象
+                    $(setRadio).val(obj.radius); //显示
+                } else {
+                    label = new BMap.Label(Math.ceil(circle.getRadius()) + '米', opts); // 创建文本标注对象
+                    $(setRadio).val(Math.ceil(circle.getRadius()));
+                }
+                label.setStyle({
+                    fontSize: "12px",
+                    height: "20px",
+                    lineHeight: "20px",
+                    fontFamily: "微软雅黑",
+                    borderColor: "blue"
+                });
+                map.addOverlay(label);
+                labelArr.push(label);
+            }
+            if (mPoint != null) {
+                circle.addEventListener("lineupdate", function (e) {
+                    circle.oc[1].ondragging = showRadius(e);
+                    showRadius({
+                        point: circle.oc[1].point
+                    });
+                });
+            }
+        });
 </script>
 </body>
 </html>
