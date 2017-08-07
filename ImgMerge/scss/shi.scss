@@ -1,0 +1,818 @@
+//合同消息
+body .message-box {
+  overflow: hidden;
+  .text-left {
+    span {
+      display: inline-block;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+  }
+  .show-detail {
+    padding-left: 3px;
+    padding-right: 3px;
+    color: green;
+  }
+  .bargain_show_detail {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ibox-search {
+    &-wrapper {
+      &-first {
+        height: 45px !important;
+        padding: 14px 0 0 0 !important;
+        &-top {
+          .btn-conform {
+            width: 100%;
+            padding-left: 15px;
+            background-color: #fafafa;
+            border-bottom: 1px solid #fafafa !important;
+            .btn-receiver, .btn-send {
+              padding-top: 2px;
+              box-shadow: none;
+              height: 25px;
+              text-align: center;
+              padding-bottom: 2px;
+            }
+          }
+          .search-helabel {
+            margin-left: 6px;
+          }
+          .search-rightdown {
+            .droplist-text {
+              width: 130px !important;
+            }
+            .erp-droplist {
+              width: 133px !important;
+            }
+            .erp-droplist-menu {
+              width: 133px !important;
+              li {
+                text-indent: 9px;
+              }
+            }
+            .erp-droplist-toggle {
+              width: 131px !important;
+            }
+          }
+          .search-sxs {
+            .erp-droplist-menu {
+              width: 82px !important;
+            }
+          }
+          .search-heright {
+            margin-right: 11px;
+          }
+          .search-hedown {
+            position: relative;
+            left: -2px;
+            margin-right: 0;
+          }
+          .search-input-uutextone {
+            height: 22px;
+            top: -2px;
+          }
+          .btn-success-sm {
+            top: -3px;
+            padding: 2px 12px;
+            margin-left: -20px;
+            color: white;
+            border-radius: 5px;
+          }
+          .search-for-dohelp {
+            margin-left: 10px;
+            margin-top: -1px;
+          }
+          .erp-searchdroplist-dadroplist {
+            width: 40px;
+            border: none;
+          }
+          .btn-search-susm {
+            top: -1px;
+            padding: 2px 12px;
+            color: white;
+            border-radius: 5px
+          }
+        }
+      }
+    }
+  }
+}
+
+//审批配置页面
+.approval-setting {
+  margin-top: 20px;
+  margin-bottom: 45px;
+  .search-btn {
+    margin-top: -3px;
+    margin-left: 90px;
+    margin-right: 20px;
+    background: #00b289;
+    border: 0;
+  }
+}
+
+//审批页面
+.approval-select {
+  height: 38px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.approval-search {
+  &-select {
+    width: 163px;
+    float: left;
+    margin-right: 35px;
+    position: relative;
+    .org {
+      .org-name {
+        height: 25px;
+      }
+    }
+  }
+
+  &-option {
+    width: 120px;
+    height: 25px;
+    padding: 0px;
+    position: absolute;
+    top: -3px;
+    right: -16px;
+    border: 1px solid #d4d4d4;
+  }
+  &-input {
+    width: 130px;
+    height: 25px;
+    right: -5px;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  &-option-agent {
+    width: 100px;
+    height: 25px;
+    position: absolute;
+    top: -3px;
+    right: 100px;
+    border: 1px solid #d4d4d4;
+  }
+  .notice-header-add {
+    margin-top: -27px;
+  }
+}
+
+.approval-btn {
+  .btn-search {
+    float: left;
+  }
+  .searchdroplist-clear {
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #657aa0;
+    .classic-icon {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+}
+
+.approval-add {
+  float: right;
+  margin-bottom: 7px;
+  .btn-approval {
+    float: right;
+  }
+}
+
+.ww:hover {
+  .ee {
+    display: block;
+  }
+}
+
+//新增流程弹出框
+.approval-table {
+  &-newstep {
+    overflow-y: auto;
+    max-height: 300px;
+    .table-data {
+      //table-layout: fixed;
+      //text-align: center;
+      //th {
+      //  text-align: center;
+      //  background: #E4E4E4;
+      //}
+      td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    .jx_types {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0 2px;
+      white-space: nowrap;
+    }
+  }
+  &-tbody {
+    td {
+      text-align: center;
+    }
+    .approval-active {
+      padding-right: 35px;
+      padding-left: 0px;
+      span:hover {
+        cursor: pointer;
+      }
+      position: relative;
+      .glyphicon-active-down {
+        position: absolute;
+        top: 7px;
+        right: 25px;
+      }
+      .glyphicon-active-up {
+        position: absolute;
+        top: 7px;
+        right: 8px;
+      }
+    }
+  }
+}
+
+.approval-action {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 7px
+}
+
+.approval-action-title {
+  max-width: 900px;
+  height: auto;
+  padding: 5px;
+  text-align: left;
+  white-space: normal;
+  color: grey;
+  position: absolute;
+  display: none;
+  background: rgb(247, 247, 247);
+  border: 1px solid #d4d4d4;
+}
+
+.approval-action:hover .approval-action-title {
+  display: block;
+}
+
+.approval-select-type {
+  color: #8A8686;
+  float: left;
+  padding-left: 7px;
+}
+
+.modal-footer {
+  .btn-cancel {
+    width: 60px;
+    height: 24px;
+    color: black;
+    padding-top: 2px;
+    text-align: center;
+    background: white;
+  }
+  .btn-inject {
+    width: 56px;
+    height: 22px;
+    background: #f0ad4e;
+    color: white;
+    border: 0;
+  }
+  .btn-skip {
+    width: 56px;
+    height: 22px;
+    background: rgb(124, 213, 61);
+    color: white;
+    border: 0;
+  }
+}
+
+//新增步骤弹框
+.modal-approval {
+  .caret-js {
+    margin-right: 1px;
+  }
+  .select-group {
+    padding-right: 0;
+  }
+}
+
+//成交基本资料弹出框
+.approval-modal-change {
+  .approval-title {
+    text-align: center;
+    font-size: 20px !important;
+    font-weight: bold;
+  }
+
+  .table-time {
+    text-align: right;
+    border-left: 0;
+  }
+
+  .approval-status {
+    text-align: right;
+    padding: 0px;
+  }
+
+  .approval-more {
+    float: right;
+  }
+
+  .approval-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 35px;
+    background-color: #d4d4d4;
+  }
+
+  .approval-table-height {
+    margin-top: 6px;
+    max-height: 210px;
+    margin-bottom: 10px;
+    .approval-table-scroll {
+      height: 190px;
+      overflow-y: scroll;
+      .table {
+        th {
+          background: #E4E4E4;
+        }
+      }
+    }
+  }
+
+  .infor-label {
+    color: #9c999c;
+  }
+
+  .table-end {
+    margin-bottom: 6px;
+    margin-top: 6px;
+  }
+
+  .approval-textaera {
+    width: 100%;
+    max-width: 702px;
+    min-height: 55px;
+  }
+
+  .table-infor {
+    .infor-label-sign {
+      .table-time {
+        border-right: 0;
+        .approval-table-title {
+          width: 300px;
+          text-align: left;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+      th {
+        position: relative;
+      }
+      .approval-sign {
+        width: 7px;
+        height: 27px;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline-block;
+      }
+      .active {
+        background: #9c999c;
+      }
+      .doing {
+        background: #CE8712;
+      }
+      .pass {
+        background: #00a23f;
+      }
+      .jumb {
+        background: #7cd53d;
+      }
+      .inject {
+        background: #da4f49;
+      }
+      .finish {
+        background: #5bc0de;
+      }
+    }
+    .infor-label-result {
+      .active {
+        color: #9c999c;
+      }
+      .doing {
+        color: #CE8712;
+      }
+      .pass {
+        color: #00a23f;
+      }
+      .jumb {
+        color: #7cd53d;
+      }
+      .inject {
+        color: #da4f49;
+      }
+      .finish {
+        color: #5bc0de;
+      }
+    }
+    span {
+      float: left;
+      margin-left: 5px;
+    }
+    td {
+      clear: both;
+    }
+    .approval-head {
+      img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+      }
+    }
+    .approval-doing {
+      float: right;
+      color: rgb(27, 202, 175);
+      text-align: center;
+      font-size: 12px;
+      padding: 0px 10px;
+      border-style: none;
+      border-radius: 15px;
+      background: white;
+      border: 1px solid #e4e4e4;
+    }
+  }
+}
+
+//更多详情
+.more-title {
+  padding-left: 15px;
+}
+
+.approval-moredetail {
+  overflow-y: auto;
+  height: 400px;
+  &-agent {
+    .more-label {
+      text-align: left;
+      padding-top: 5px;
+    }
+    .more-label-month {
+      text-align: right;
+      padding-top: 5px
+    }
+    &-deduct {
+      width: 229px;
+      padding-left: 0px;
+      margin-left: -60px;
+    }
+  }
+}
+
+.approval-table-more {
+  th {
+    background: #E4E4E4;
+  }
+  td, th {
+    text-align: center;
+  }
+}
+
+//审批管理排版
+.approval-search-select {
+  .org_hp {
+    margin-left: 50px;
+    margin-top: 22px;
+    float: left;
+  }
+}
+
+.search-date {
+  width: 225px;
+}
+
+//日历火狐兼容
+.margin-task-data {
+  td, th {
+    font-size: 12px;
+  }
+}
+
+.salary-manage label {
+  font-weight: normal;
+}
+
+//工资异动
+.salary-change {
+  border-right: 0 !important;
+  border-left: 0 !important;
+  div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 3px 6px;
+  }
+}
+
+.salary-approval {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.other-box2 {
+  .link-text {
+    padding-right: 10px;
+  }
+}
+
+//工资组织架构
+.caret-drop {
+  right: 20px !important;
+}
+
+.company-belong {
+  .dropdown-toggle {
+    height: 25px;
+  }
+  .dropdown-menu {
+    min-width: 200px;
+    height: 300px;
+    top: 25px;
+    &-list {
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      width: 178px;
+      height: 25px;
+      &-tree {
+        position: absolute;
+        top: 35px;
+        left: 10px;
+        min-width: 180px;
+        height: 260px;
+        overflow-y: auto;
+      }
+    }
+  }
+}
+
+/*.organ-agent-scroll{
+  .only-box{
+      overflow-y: auto;
+      max-height: 500px;
+  }
+}*/
+.organ-agent-scroll {
+  .ui-grid-cell-contents {
+    font-weight: normal;
+  }
+  .store-community-name {
+    font-weight: normal;
+    padding: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+//新增员工
+.agent-template-org {
+  .super-org {
+    .super-org-department-input {
+      border: 1px solid #FFD895 !important;
+      background: #FFFBEF;
+    }
+  }
+}
+
+//人员管理
+.search-guty {
+  .erp-droplist-toggle {
+    width: 130px !important;
+  }
+  #search-position, #search-grade {
+    width: 132px !important;
+    .droplist-text {
+      width: 115px !important;
+    }
+  }
+  .erp-droplist-menu {
+    overflow-y: auto;
+    max-height: 190px;
+    width: 132px !important;
+  }
+}
+
+//其他工资
+#gird_salary {
+  height: 290px !important;
+  .ui-grid-viewport {
+    height: 255px !important;
+  }
+}
+
+//组织架构精耕小区
+.ui-select-scroll {
+  .dropdown div:first-child {
+    max-height: 100px;
+    margin-bottom: 3px;
+    overflow-y: auto;
+  }
+  .ui-select-search {
+    max-width: 390px;
+  }
+  .ui-select-choices {
+    .title {
+      height: 30px !important;
+      overflow: hidden;
+    }
+  }
+}
+
+//工资审批
+.salary-list {
+  margin-top: 10px;
+  height: 230px;
+  overflow: scroll;
+}
+
+.approval-modal-change {
+  .salary-newstep {
+    width: 875px;
+    margin-left: 15px;
+    border: 1px solid #dddddd;
+  }
+}
+
+.record-lightBlue {
+  background: #ebfbfe !important;
+}
+
+//分摊机构
+.share-org {
+  .org-select_box {
+    margin-left: 40px;
+  }
+
+  //户型图列表
+  .house-type {
+    .ul-list {
+      padding: 0;
+      li {
+        height: 90px;
+        margin-bottom: 10px;
+        list-style-type: none;
+        cursor: pointer;
+        img {
+          width: 100%;
+          height: 100%;
+          border: 1px solid #ccc;
+        }
+      }
+    }
+  }
+
+  //是看房源跟进
+  .track-pics {
+    &-status {
+      padding: 10px 0 10px 0;
+      .track-pics-clear {
+        margin-bottom: 10px;
+        .track-pics-ul {
+          margin-bottom: 0;
+          list-style: none;
+          padding: 0;
+          overflow: hidden;
+          li {
+            float: left;
+            img {
+              width: 18px;
+              margin-right: 3px;
+              vertical-align: middle;
+            }
+          }
+          li:last-child {
+            float: right;
+          }
+          .track-pic-li {
+            padding-left: 6px;
+          }
+        }
+      }
+      .pic-status-btn {
+        text-align: right;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
+    }
+    .swiper-box {
+      margin-bottom: 10px;
+    }
+    .option-box {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #333;
+      opacity: .5;
+      z-index: 999;
+    }
+    .panel {
+      border-radius: 0;
+      box-shadow: none;
+      .panel-heading {
+        padding: 3px 5px;
+        font-size: 12px;
+      }
+    }
+    .track-pic-upload {
+      width: 100%;
+      height: 55px;
+      font-size: 12px;
+      background-color: #eeeeee;
+    }
+    .track-pics-left {
+      position: absolute;
+      left: 8px;
+      top: 2px;
+      img {
+        width: 15px
+      }
+    }
+    .track-pics-right {
+      position: absolute;
+      right: 8px;
+      top: 2px;
+      img {
+        width: 15px
+      }
+    }
+    .picTitle {
+      font-size: 12px;
+      border-radius: 0;
+    }
+  }
+
+  .upload-xs mask:hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: gray;
+    z-index: 996;
+    opacity: 0.59;
+  }
+
+  .track-pic-scroll {
+    max-height: 120px;
+    overflow: auto;
+    margin-bottom: 10px;
+  }
+
+  .look {
+    .mask-con {
+      position: absolute;
+      top: 15px;
+      left: 30px;
+      color: white;
+      display: none;
+      z-index: 99999;
+    }
+    .mask {
+      opacity: 0;
+    }
+  }
+
+  .look:hover .mask {
+    background: black;
+    opacity: 0.5
+  }
+
+  .look:hover .mask-con {
+    display: block;
+  }
+}

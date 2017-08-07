@@ -5,22 +5,32 @@ var concat = require('gulp-concat');
 var ngAnnotate = require('gulp-ng-annotate');
 var imagemin = require('gulp-imagemin');
 var minifyCss = require('gulp-minify-css');
+var cleanCss = require('gulp-clean-css');
+var sass = require('gulp-sass');
 
 
+//SCSS合并、压缩
+gulp.task('scssmin', function () {
+    gulp.src('scss/*.scss')
+        .pipe(sass())
+        .pipe(concat('all.css'))
+        .pipe(cleanCss()) // 又多了一步，压缩
+        .pipe(gulp.dest('css/'));
+});
 
 
-gulp.task('house_css2', function() {
+gulp.task('house_css2', function () {
     return gulp.src([
-            'css/animate.min.css',
-            'css/style.css'
-
-
-        ])
+        'css/animate.min.css',
+        'css/style.css'
+    ])
         .pipe(concat('style2.css'))
         .pipe(minifyCss())
         .pipe(gulp.dest('css/min/'));
 });
 
+
+//压缩图片
 gulp.task('Imagemin', function () {
     gulp.src('img/*.{png,jpg,gif,ico}')
         .pipe(imagemin({
@@ -33,55 +43,53 @@ gulp.task('Imagemin', function () {
 });
 
 
-
-
 // JS处理任务
-gulp.task('default', function() {
-  return gulp.src(['app/lib/jquery/1.11.3/jquery-1.11.3.min.js',
-    'app/lib/angular/1.5.0/angular.min.js',
-    'app/lib/angular/1.5.0/angular-route.min.js',
-    'app/lib/angular/1.5.0/angular-touch.min.js',
-    'app/lib/angular/1.5.0/angular-animate.js',
-    'app/lib/weui/script/weui.js',
-    'app/lib/ui-bootstrap/1.2.1/ui-bootstrap-tpls-1.2.1.min.js',
-    'app/lib/ng-file-upload/12.0.1/ng-file-upload-shim.min.js',
-    'app/lib/ng-file-upload/12.0.1/ng-file-upload.min.js',
-    'app/lib/nginfinitescroll/1.2.0/ng-infinite-scroll.min.js',
-    'app/lib/mobiscroll/datetime/js/mobiscroll.custom-2.17.0.min.js'
-  ])
-    .pipe(concat('oa.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('app/lib/'));
-});
-
-gulp.task('ng', function() {
-  return gulp.src([
-      'lib/angular/1.4.7/angular.min.js',
-      'lib/angular/1.4.7/angular-route.min.js',
-      'lib/angular/1.4.7/angular-touch.min.js',
-      'lib/nginfinitescroll/1.2.0/ng-infinite-scroll.min.js'
+gulp.task('default', function () {
+    return gulp.src(['app/lib/jquery/1.11.3/jquery-1.11.3.min.js',
+        'app/lib/angular/1.5.0/angular.min.js',
+        'app/lib/angular/1.5.0/angular-route.min.js',
+        'app/lib/angular/1.5.0/angular-touch.min.js',
+        'app/lib/angular/1.5.0/angular-animate.js',
+        'app/lib/weui/script/weui.js',
+        'app/lib/ui-bootstrap/1.2.1/ui-bootstrap-tpls-1.2.1.min.js',
+        'app/lib/ng-file-upload/12.0.1/ng-file-upload-shim.min.js',
+        'app/lib/ng-file-upload/12.0.1/ng-file-upload.min.js',
+        'app/lib/nginfinitescroll/1.2.0/ng-infinite-scroll.min.js',
+        'app/lib/mobiscroll/datetime/js/mobiscroll.custom-2.17.0.min.js'
     ])
-    .pipe(concat('ng.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('lib/'));
+        .pipe(concat('oa.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('app/lib/'));
 });
 
-gulp.task('lib_crm',function(){
+gulp.task('ng', function () {
     return gulp.src([
-          'lib/jquery/jquery-2.1.4.min.js',
-          'lib/angular/1.4.7/angular.min.js',
-          'lib/angular/1.4.7/angular-route.min.js',
-          'lib/angular/1.4.7/angular-touch.min.js',
-          'lib/angular/1.4.7/angular-sanitize.min.js',
-          'lib/ngInfiniteScroll/1.2.0/ng-infinite-scroll.min.js',
-          'lib/mobiscroll/calendar/js/mobiscroll.custom-2.17.0.min.js'
-      ])
-      .pipe(concat('crm.js'))
-      .pipe(uglify())
-      .pipe(gulp.dest('lib/'));
+        'lib/angular/1.4.7/angular.min.js',
+        'lib/angular/1.4.7/angular-route.min.js',
+        'lib/angular/1.4.7/angular-touch.min.js',
+        'lib/nginfinitescroll/1.2.0/ng-infinite-scroll.min.js'
+    ])
+        .pipe(concat('ng.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('lib/'));
 });
 
-gulp.task('daily', function() {
+gulp.task('lib_crm', function () {
+    return gulp.src([
+        'lib/jquery/jquery-2.1.4.min.js',
+        'lib/angular/1.4.7/angular.min.js',
+        'lib/angular/1.4.7/angular-route.min.js',
+        'lib/angular/1.4.7/angular-touch.min.js',
+        'lib/angular/1.4.7/angular-sanitize.min.js',
+        'lib/ngInfiniteScroll/1.2.0/ng-infinite-scroll.min.js',
+        'lib/mobiscroll/calendar/js/mobiscroll.custom-2.17.0.min.js'
+    ])
+        .pipe(concat('crm.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('lib/'));
+});
+
+gulp.task('daily', function () {
     return gulp.src([
         'oa/daily/app.js',
         'oa/daily/services.js',
@@ -96,7 +104,7 @@ gulp.task('daily', function() {
 });
 
 //二手房列表
-gulp.task('house_css', function() {
+gulp.task('house_css', function () {
     return gulp.src([
         'app/lib/bootstrap/3.3.6/css/bootstrap.min.css',
         'app/lib/weui/style/weui.min.css',
@@ -113,7 +121,7 @@ gulp.task('house_css', function() {
 });
 
 //个人中心
-gulp.task('task', function() {
+gulp.task('task', function () {
     return gulp.src([
         'oa/task/app.js',
         'oa/task/services.js',
@@ -128,7 +136,7 @@ gulp.task('task', function() {
 });
 
 
-gulp.task('mine_css', function() {
+gulp.task('mine_css', function () {
     return gulp.src([
         'app/lib/bootstrap/3.3.6/css/bootstrap.min.css',
         'app/lib/weui/style/weui.min.css',
@@ -145,7 +153,7 @@ gulp.task('mine_css', function() {
 });
 
 //求购求租
-gulp.task('checkin', function() {
+gulp.task('checkin', function () {
     return gulp.src([
         'oa/checkin/app.js',
         'oa/checkin/services.js',
@@ -160,7 +168,7 @@ gulp.task('checkin', function() {
 });
 
 
-gulp.task('buyRent_css', function() {
+gulp.task('buyRent_css', function () {
     return gulp.src([
         'app/lib/bootstrap/3.3.6/css/bootstrap.min.css',
         'app/lib/weui/style/weui.min.css',
@@ -172,7 +180,7 @@ gulp.task('buyRent_css', function() {
 });
 
 //发布房源
-gulp.task('wf', function() {
+gulp.task('wf', function () {
     return gulp.src([
         'oa/wf/app.js',
         'oa/wf/services.js',
@@ -187,7 +195,7 @@ gulp.task('wf', function() {
 });
 
 
-gulp.task('release_css', function() {
+gulp.task('release_css', function () {
     return gulp.src([
         'app/lib/bootstrap/3.3.6/css/bootstrap.min.css',
         'app/lib/weui/style/weui.min.css',

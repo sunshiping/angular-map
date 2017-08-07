@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>vue-demo</title>
+    <link rel="stylesheet" href="css/dist/style/weui.css">
+    <style type="text/css">
+        .weui-label {
+            width: 240px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="weui-cells">
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>cell standard</p>
+            </div>
+            <div class="weui-cell__ft" v-on:click="showMessage">{{message}}</div>
+        </a>
+        <a class="weui-cell weui-cell_access" href="javascript:;" v-on:keyup.enter="showAlert">
+            <div class="weui-cell__bd">
+                <p>cell standard</p>
+            </div>
+            <div class="weui-cell__ft" v-if="show">说明文字v-if</div>
+        </a>
+        <a class="weui-cell weui-cell_access" href="javascript:;" v-for="(x, index) in todos">
+            <div class="weui-cell__bd">
+                <p>todos{{index + 1}}</p>
+            </div>
+            <div class="weui-cell__ft">{{x.text}}</div>
+        </a>
+    </div>
+    <div class="weui-cells">
+        <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item">
+        </todo-item>
+    </div>
+
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label" v-once>{{messag}}</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请输入" v-model="messag">
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/vueComponent.js"></script>
+<script type="text/javascript">
+    var demo = new Vue({
+        el: '#app',
+        data: {
+            show: true,
+            todos: [
+                {text: '学习 JavaScript'},
+                {text: '学习 Vue'},
+                {text: '整个牛项目'}
+            ],
+            message: 'Hello Vue! ' + ( new Date().getMonth() + 1),
+            groceryList: [
+                {id: 0, text: '蔬菜'},
+                {id: 1, text: '奶酪'},
+                {id: 2, text: '随便其他什么人吃的东西'}
+            ],
+            messag: 'v-once'
+        },
+        methods: {
+            showMessage: function () {
+                this._data.show = !this._data.show;
+                console.log(this);
+            },
+            showAlert:function(){
+                alert('键盘事件')
+            }
+        }
+    });
+    demo.showMessage();
+</script>
+</body>
+</html>
