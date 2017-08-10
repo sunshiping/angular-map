@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>忘记密码</title>
+    <link rel="stylesheet" href="css/dist/style/weui.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+    <div class="page__hd">
+        <img src="img/icon-logo.png" alt="">
+    </div>
+    <div class="page__con">
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">账户</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" placeholder="请输入手机号" v-model="account.phoneNumber">
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_vcode">
+                <div class="weui-cell__hd">
+                    <label class="weui-label">验证码</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="text" placeholder="请输入验证码" v-model="account.code">
+                </div>
+                <div class="weui-cell__ft">
+                    <button class="weui-vcode-btn">获取验证码</button>
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">重置密码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="password" placeholder="请重置6-16位密码" v-model="account.passWord">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">确认密码</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" type="password" placeholder="请再次输入新密码" v-model="account.qpassWord">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page__ft">
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="javascript:" v-on:click="save($event)">确定</a>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/vueComponent.js"></script>
+<script type="text/javascript">
+    var demo = new Vue({
+        el: '#app',
+        data: {
+            account:{
+                phoneNumber:'',
+                code:'',
+                passWord:'',
+                qpassWord:''
+            }
+        },
+        methods: {
+            save: function (event) {
+                //TODO 修改密码
+                console.log(this.account);
+            }
+        }
+    });
+</script>
+</body>
+</html>

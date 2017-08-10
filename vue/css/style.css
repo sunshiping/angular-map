@@ -1,0 +1,30 @@
+.page__hd {
+    padding-top: 50px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.page__con {
+
+}
+
+.page__con .weui-btn-area {
+    margin: 2.176471em 15px 0.3em;
+}
+
+.page__ft {
+
+}
+
+.page__ft .weui-btn-area {
+    margin: 3.176471em 15px 0.3em;
+}
+
+.page__ft .forget {
+    padding-top: 12px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.page__ft .forget a{
+    color: #ccc;
+}
