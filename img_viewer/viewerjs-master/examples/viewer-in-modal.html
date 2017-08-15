@@ -167,13 +167,14 @@
         $timeout(function () {
           new Viewer(document.getElementById(type), {
             inline: false,
-            viewed: function () {
+            viewed: function (e) {
               if (is_locked) {
                 this.viewer.view(curIndex);
                 is_locked = false;
               }
             },
-            rotate: function () {
+            imgRotate: function (e) {
+              console.log(e);
               debugger;
             }
 
