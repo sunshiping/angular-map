@@ -14,88 +14,109 @@
 </head>
 <body ng-controller="ViewerController">
 <div>
-    <table border="1">
-        <thead>
-        <tr>
-            <th width="60" rowspan="2" ng-repeat="val in fixation track by $index">{{val}}</th>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-default btn-sm" ng-click="exportBtn()">
+                    导出工资
+                </button>
+                <button type="button" class="btn btn-default dropdown-toggle" aria-label="Justify"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-align-justify" aria-hidden="false"></span>
+                </button>
+                <ul class="dropdown-menu" style="min-width: 110px">
+                    <li ng-repeat="x in allType track by $index" style="padding-left: 10px;">
+                        <div class="checkbox" style="margin-bottom: 5px;margin-top: 5px;">
+                            <label>
+                                <input type="checkbox" ng-model="x.select" value="{{x.name}}"> {{x.name}}
+                            </label>
+                        </div>
+                    </li>
+                    <!--<li class="disabled"><a href="#">Disabled link</a></li>-->
+                    <!--<li><a href="#">Another link</a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <table border="1">
+                <thead>
+                <tr>
+                    <th width="60" rowspan="2" ng-repeat="val in fixation | filter:{select:true}">{{val.name}}</th>
+                    <!--<th width="60" rowspan="2" ng-repeat="val in fixation track by $index" ng-if="val.name =='分摊部门'"-->
+                    <!--colspan="{{type.length}}">{{val.name}}-->
+                    <!--</th>-->
 
-            <!--<th width="60" rowspan="2">部门</th>-->
-            <!--<th width="60" rowspan="2">基本工资</th>-->
-            <!--<th width="60" rowspan="2">岗位工资</th>-->
-            <!--<th width="60" rowspan="2">绩效工资</th>-->
-            <!--<th width="60" rowspan="2">工龄工资</th>-->
-            <!--<th width="60" rowspan="2">全勤工资</th>-->
-            <!--<th width="60" rowspan="2">应发</th>-->
-            <!--<th width="60" rowspan="2">补贴</th>-->
-            <!--<th width="60" rowspan="2">补助工资</th>-->
-            <!--<th width="60" rowspan="2">额外工资</th>-->
-            <th width="60" rowspan="2">合计</th>
-            <th width="120" colspan="{{type.length}}">分摊部门</th>
-        </tr>
-        <tr>
-            <th ng-repeat="x in type track by $index">{{x}}</th>
+                    <!--<th width="60" rowspan="2">部门</th>-->
+                    <!--<th width="60" rowspan="2">基本工资</th>-->
+                    <!--<th width="60" rowspan="2">岗位工资</th>-->
+                    <!--<th width="60" rowspan="2">绩效工资</th>-->
+                    <!--<th width="60" rowspan="2">工龄工资</th>-->
+                    <!--<th width="60" rowspan="2">全勤工资</th>-->
+                    <!--<th width="60" rowspan="2">应发</th>-->
+                    <!--<th width="60" rowspan="2">补贴</th>-->
+                    <!--<th width="60" rowspan="2">补助工资</th>-->
+                    <!--<th width="60" rowspan="2">额外工资</th>-->
+                    <!--<th width="60" rowspan="2">合计</th>-->
+                    <th width="120" colspan="{{type2.length}}">分摊部门</th>
+                </tr>
+                <tr>
+                    <th ng-repeat="x in type | filter:{select:true}">{{x.name}}</th>
 
-        </tr>
-        </thead>
-        <tbody id="html">
-        <!--<tr>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">8888</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-        <!--<td width="5% " rowspan="2">1111</td>-->
-        <!--<td width="5% " rowspan="2">2222</td>-->
-        <!--<td width="5% " rowspan="2">3333</td>-->
-        <!--<td width="5% " rowspan="2">4444</td>-->
-        <!--<td width="5% " rowspan="2">4444</td>-->
-        <!--<td width="5% " rowspan="2">4444</td>-->
-        <!--<td width="5% " rowspan="2">4444</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--<td width="5% ">1234</td>-->
-        <!--</tr>-->
-        </tbody>
-    </table>
+                </tr>
+                </thead>
+                <tbody id="html">
+                <!--<tr>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">8888</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--<td width="5% " rowspan="2">1111</td>-->
+                <!--<td width="5% " rowspan="2">2222</td>-->
+                <!--<td width="5% " rowspan="2">3333</td>-->
+                <!--<td width="5% " rowspan="2">4444</td>-->
+                <!--<td width="5% " rowspan="2">4444</td>-->
+                <!--<td width="5% " rowspan="2">4444</td>-->
+                <!--<td width="5% " rowspan="2">4444</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--<td width="5% ">1234</td>-->
+                <!--</tr>-->
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="../app/lib/jquery/1.11.3/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../app/lib/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../app/lib/lodash/4.17.4/lodash.js"></script>
 <script type="text/javascript" src="../app/lib/angular/1.5.0/angular.js"></script>
 <script type="text/javascript">
     var app = angular.module('App', [])
         .controller('ViewerController', function ($scope, $timeout, $compile) {
+            $scope.newAll = [];
+            $scope.select = true;
 
-            $scope.fixation = [
-                '姓名',
-                '工资月份',
-                '职级',
-                '职务',
-                '入职时间',
-                '状态'
-            ];
-
-            $scope.type = ['部门', '比例', '工资', '补贴项', '扣款项'];
-            $scope.all = _.union( $scope.fixation,$scope.type,true);
-
+            //TODO 列表数据
             $scope.data = [
                 {
                     name: 'sunshiping',
@@ -127,7 +148,7 @@
                         {
                             bm: '研发',
                             bl: '20%',
-                            gz: '4000',
+                            gz: '',
                             btx: '开发',
                             kkx: '错误'
                         },
@@ -205,16 +226,151 @@
                     ]
                 }
             ];
+            //固定项
+            $scope.fixation = [
+                {
+                    name: '姓名',
+                    acronym: 'name',
+                    nape: 1,
+                    select: true
+                },
+                {
+                    name: '工资月份',
+                    acronym: 'month',
+                    nape: 1,
+                    select: true
+                },
+                {
+                    name: '职级',
+                    acronym: 'grad',
+                    nape: 1,
+                    select: true
+                },
+                {
+                    name: '职务',
+                    acronym: 'zw',
+                    nape: 1,
+                    select: true
+                },
+                {
+                    name: '入职时间',
+                    acronym: 'rzsj',
+                    nape: 1,
+                    select: true
+                },
+                {
+                    name: '状态',
+                    acronym: 'zt',
+                    nape: 1,
+                    select: true
+                },
+                {
+                    name: '合计',
+                    acronym: 'hj',
+                    nape: 1,
+                    select: true
+                }
+            ];
+
+            //TODO 可配置的分摊部门
+            $scope.type = [
+
+                {
+                    name: '部门',
+                    acronym: 'bm',
+                    nape: 2,
+                    select: true
+
+                },
+                {
+                    name: '比例',
+                    acronym: 'bl',
+                    nape: 2,
+                    select: true
+
+                },
+                {
+                    name: '工资',
+                    acronym: 'gz',
+                    nape: 2,
+                    select: true
+
+                },
+                {
+                    name: '补贴项',
+                    acronym: 'bt',
+                    nape: 2,
+                    select: true
+
+                },
+                {
+                    name: '扣款项',
+                    acronym: 'kk',
+                    nape: 2,
+                    select: true
+
+                }
+
+            ];
+
+            $scope.allType = _.union($scope.fixation, $scope.type, true);
+
+            $scope.$watch('allType', function (newVal, oldVal) {
+                $scope.type2 = [];
+                $scope.fixation2 = [];
+                $scope.html3 = [];
+                angular.forEach(newVal, function (type, index) {
+                    if (type.nape == 2) {
+                        $scope.type2.push(type);
+                    } else {
+                        $scope.fixation2.push(type);
+                    }
+                });
+//                for (var i = 1; i < $scope.fixation2.length; i++) {
+//                    if ($scope.fixation2[i].select == true) {
+//                        var html = '<td width="5%" rowspan="' + val.children.length + '">' + val.name + '</td>';
+//                        $scope.html3.push(html);
+//                    }
+//                }
+
+//                angular.forEach($scope.fixation2, function (val, index) {
+//                    debugger;
+//                    if (val.select == true) {
+//                        var html = '<td width="5%">' + val.acronym + '</td>';
+//                        $scope.html3.push(html);
+//                    }
+//                });
+
+
+                angular.element('#html').empty();
+                $scope.draw(newVal);
+            }, true);
 
 //            _.difference(['大','小','上','下'], ['小','上']);
 //            ["大", "下"]
+            $scope.draw = function (dataType) {
+                $scope.tbody = [];
+                $scope.oldDate = angular.copy($scope.data);
+                angular.forEach(dataType, function (val, index) {
+                    if (val.select == false) {
+                        if (val.nape == 1) {
+                            angular.forEach($scope.oldDate, function (val2, index) {
+                                val2[val.acronym] = true;
+                            })
+                        } else {
+                            angular.forEach($scope.oldDate, function (val2, index) {
+                                debugger;
+                                val2.children[val.acronym] = true;
+                            })
+                        }
 
-            $scope.tbody = [];
-            angular.forEach($scope.data, function (val, index) {
-                if (val.children.length > 1) {
+                    }
+                })
+                angular.forEach($scope.oldDate, function (val, index) {
+
                     $scope.html2 = '<tr>' +
-                        '<td width="5%" rowspan="' + val.children.length + '">' + val.name + '</td>' +
-                        '<td width="5%" rowspan="' + val.children.length + '">' + val.month + '</td>' +
+                        '<td width="5%" rowspan="' + val.children.length + '" ng-if="!' + val.name + '">' + val.name + '</td>' +
+                        '<td width="5%" rowspan="' + val.children.length + '" ng-if="!' + val.month + '">' + val.month + '</td>' +
                         '<td width="5%" rowspan="' + val.children.length + '">' + val.grad + '</td>' +
                         '<td width="5%" rowspan="' + val.children.length + '">' + val.zw + '</td>' +
                         '<td width="5%" rowspan="' + val.children.length + '">' + val.rzsj + '</td>' +
@@ -227,40 +383,32 @@
                         '<td width="5%">' + val.children[0].kkx + '</td>' +
                         '</tr>';
                     $scope.tbody.push($scope.html2);
-                    for (var i = 1; i < val.children.length; i++) {
-                        $scope.html3 = '<tr>' +
-                            '<td width="5%">' + val.children[i].bm + '</td>' +
-                            '<td width="5%">' + val.children[i].bl + '</td>' +
-                            '<td width="5%">' + val.children[i].gz + '</td>' +
-                            '<td width="5%">' + val.children[i].btx + '</td>' +
-                            '<td width="5%">' + val.children[i].kkx + '</td>' +
-                            '</tr>';
-                        $scope.tbody.push($scope.html3)
+                    if (val.children.length > 1) {
+                        for (var i = 1; i < val.children.length; i++) {
+                            $scope.html3 = '<tr>' +
+                                '<td width="5%">' + val.children[i].bm + '</td>' +
+                                '<td width="5%">' + val.children[i].bl + '</td>' +
+                                '<td width="5%">' + val.children[i].gz + '</td>' +
+                                '<td width="5%">' + val.children[i].btx + '</td>' +
+                                '<td width="5%">' + val.children[i].kkx + '</td>' +
+                                '</tr>';
+                            $scope.tbody.push($scope.html3)
+                        }
                     }
+                });
+                $scope.innerHTML = $scope.tbody.join('');
+                var template = angular.element($scope.innerHTML);
+                var mobileDialogElement = $compile(template)($scope);
+                angular.element('#html').append(mobileDialogElement);
+            };
 
 
-                } else {
-                    $scope.html = '<tr>' +
-                        '<td width="5%">' + val.name + '</td>' +
-                        '<td width="5%">' + val.month + '</td>' +
-                        '<td width="5%">' + val.grad + '</td>' +
-                        '<td width="5%">' + val.zw + '</td>' +
-                        '<td width="5%">' + val.rzsj + '</td>' +
-                        '<td width="5%">' + val.zt + '</td>' +
-                        '<td width="5%">' + val.hj + '</td>' +
-                        '<td width="5%">' + val.children[0].bm + '</td>' +
-                        '<td width="5%">' + val.children[0].bl + '</td>' +
-                        '<td width="5%">' + val.children[0].gz + '</td>' +
-                        '<td width="5%">' + val.children[0].btx + '</td>' +
-                        '<td width="5%">' + val.children[0].kkx + '</td>' +
-                        '</tr>';
-                    $scope.tbody.push($scope.html);
-                }
-            });
-            $scope.innerHTML = $scope.tbody.join('');
-            var template = angular.element($scope.innerHTML);
-            var mobileDialogElement = $compile(template)($scope);
-            angular.element('#html').append(mobileDialogElement);
+            //导出工资
+            $scope.exportBtn = function () {
+                //TODO 导数据接口
+                console.log($scope.allType)
+            };
+
 
         });
 </script>
