@@ -1,53 +1,267 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="App">
 <head>
+    <title>table</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../app/lib/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+        table tr th,
+        table tr td {
+            text-align: center;
+        }
+    </style>
 </head>
-<table border= "1">
-    <thead>
-    <tr>
-        <th width="60" rowspan="2">111</th>
-        <th width="60" rowspan="2">222</th>
-        <th width="60" rowspan="2">333</th>
-        <th width="60" rowspan="2">444</th>
-        <th width="120" colspan="5">555</th>
-    </tr>
-    <tr>
-        <th>55-11</th>
-        <th>55-22</th>
-        <th>55-33</th>
-        <th>55-44</th>
-        <th>55-55</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-    </tr>
-    <tr>
-        <td   width= "25% " rowspan="2">1111</td>
-        <td   width= "25% " rowspan="2">2222</td>
-        <td   width= "25% " rowspan="2">3333</td>
-        <td   width= "25% " rowspan="2">4444</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-    </tr>
-    <tr>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-        <td   width= "25% ">1234</td>
-    </tr>
-    </tbody>
-</table>
+<body ng-controller="ViewerController">
+<div>
+    <table border="1">
+        <thead>
+        <tr>
+            <th width="60" rowspan="2" ng-repeat="val in fixation track by $index">{{val}}</th>
+
+            <!--<th width="60" rowspan="2">部门</th>-->
+            <!--<th width="60" rowspan="2">基本工资</th>-->
+            <!--<th width="60" rowspan="2">岗位工资</th>-->
+            <!--<th width="60" rowspan="2">绩效工资</th>-->
+            <!--<th width="60" rowspan="2">工龄工资</th>-->
+            <!--<th width="60" rowspan="2">全勤工资</th>-->
+            <!--<th width="60" rowspan="2">应发</th>-->
+            <!--<th width="60" rowspan="2">补贴</th>-->
+            <!--<th width="60" rowspan="2">补助工资</th>-->
+            <!--<th width="60" rowspan="2">额外工资</th>-->
+            <th width="60" rowspan="2">合计</th>
+            <th width="120" colspan="{{type.length}}">分摊部门</th>
+        </tr>
+        <tr>
+            <th ng-repeat="x in type track by $index">{{x}}</th>
+
+        </tr>
+        </thead>
+        <tbody id="html">
+        <!--<tr>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">8888</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<td width="5% " rowspan="2">1111</td>-->
+        <!--<td width="5% " rowspan="2">2222</td>-->
+        <!--<td width="5% " rowspan="2">3333</td>-->
+        <!--<td width="5% " rowspan="2">4444</td>-->
+        <!--<td width="5% " rowspan="2">4444</td>-->
+        <!--<td width="5% " rowspan="2">4444</td>-->
+        <!--<td width="5% " rowspan="2">4444</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--<td width="5% ">1234</td>-->
+        <!--</tr>-->
+        </tbody>
+    </table>
+</div>
+</body>
+<script type="text/javascript" src="../app/lib/jquery/1.11.3/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../app/lib/lodash/4.17.4/lodash.js"></script>
+<script type="text/javascript" src="../app/lib/angular/1.5.0/angular.js"></script>
+<script type="text/javascript">
+    var app = angular.module('App', [])
+        .controller('ViewerController', function ($scope, $timeout, $compile) {
+
+            $scope.fixation = [
+                '姓名',
+                '工资月份',
+                '职级',
+                '职务',
+                '入职时间',
+                '状态'
+            ];
+
+            $scope.type = ['部门', '比例', '工资', '补贴项', '扣款项'];
+            $scope.all = _.union( $scope.fixation,$scope.type,true);
+
+            $scope.data = [
+                {
+                    name: 'sunshiping',
+                    month: '2017-7',
+                    grad: '员工',
+                    zw: '经纪人',
+                    rzsj: '2016-12-01',
+                    zt: '在职',
+                    hj: '1234',
+                    children: [
+                        {
+                            bm: '研发',
+                            bl: '20%',
+                            gz: '4000',
+                            btx: '开发',
+                            kkx: '错误'
+                        }
+                    ]
+                },
+                {
+                    name: 'sunshiping',
+                    month: '2017-7',
+                    grad: '员工',
+                    zw: '经纪人',
+                    rzsj: '2016-12-01',
+                    zt: '在职',
+                    hj: '1234',
+                    children: [
+                        {
+                            bm: '研发',
+                            bl: '20%',
+                            gz: '4000',
+                            btx: '开发',
+                            kkx: '错误'
+                        },
+                        {
+                            bm: '前端',
+                            bl: '20%',
+                            gz: '4000',
+                            btx: '开发',
+                            kkx: '错误'
+                        },
+                        {
+                            bm: '前端',
+                            bl: '20%',
+                            gz: '4000',
+                            btx: '开发',
+                            kkx: '错误'
+                        }
+                    ]
+                },
+                {
+                    name: 'sunshiping2',
+                    month: '2017-7',
+                    grad: '员工',
+                    zw: '经纪人',
+                    rzsj: '2016-12-01',
+                    zt: '在职',
+                    hj: '1234',
+                    children: [
+                        {
+                            bm: '研发',
+                            bl: '20%',
+                            gz: '4000',
+                            btx: '开发',
+                            kkx: '错误'
+                        },
+                        {
+                            bm: '前端',
+                            bl: '20%',
+                            gz: '4000',
+                            btx: '开发',
+                            kkx: '错误'
+                        },
+                        {
+                            bm: '前端',
+                            bl: '20%',
+                            gz: '4000',
+                            btx: '开发',
+                            kkx: '错误'
+                        },
+                        {
+                            bm: '前端',
+                            bl: '20%',
+                            gz: '4000',
+                            btx: '开发',
+                            kkx: '错误'
+                        }
+                    ]
+                },
+                {
+                    name: 'sunshiping',
+                    month: '2017-7',
+                    grad: '员工',
+                    zw: '经纪人',
+                    rzsj: '2016-12-01',
+                    zt: '在职',
+                    hj: '1234',
+                    children: [
+                        {
+                            bm: '研发',
+                            bl: '20%',
+                            gz: '4000',
+                            btx: '开发',
+                            kkx: '错误'
+                        }
+                    ]
+                }
+            ];
+
+//            _.difference(['大','小','上','下'], ['小','上']);
+//            ["大", "下"]
+
+            $scope.tbody = [];
+            angular.forEach($scope.data, function (val, index) {
+                if (val.children.length > 1) {
+                    $scope.html2 = '<tr>' +
+                        '<td width="5%" rowspan="' + val.children.length + '">' + val.name + '</td>' +
+                        '<td width="5%" rowspan="' + val.children.length + '">' + val.month + '</td>' +
+                        '<td width="5%" rowspan="' + val.children.length + '">' + val.grad + '</td>' +
+                        '<td width="5%" rowspan="' + val.children.length + '">' + val.zw + '</td>' +
+                        '<td width="5%" rowspan="' + val.children.length + '">' + val.rzsj + '</td>' +
+                        '<td width="5%" rowspan="' + val.children.length + '">' + val.zt + '</td>' +
+                        '<td width="5%" rowspan="' + val.children.length + '">' + val.hj + '</td>' +
+                        '<td width="5%">' + val.children[0].bm + '</td>' +
+                        '<td width="5%">' + val.children[0].bl + '</td>' +
+                        '<td width="5%">' + val.children[0].gz + '</td>' +
+                        '<td width="5%">' + val.children[0].btx + '</td>' +
+                        '<td width="5%">' + val.children[0].kkx + '</td>' +
+                        '</tr>';
+                    $scope.tbody.push($scope.html2);
+                    for (var i = 1; i < val.children.length; i++) {
+                        $scope.html3 = '<tr>' +
+                            '<td width="5%">' + val.children[i].bm + '</td>' +
+                            '<td width="5%">' + val.children[i].bl + '</td>' +
+                            '<td width="5%">' + val.children[i].gz + '</td>' +
+                            '<td width="5%">' + val.children[i].btx + '</td>' +
+                            '<td width="5%">' + val.children[i].kkx + '</td>' +
+                            '</tr>';
+                        $scope.tbody.push($scope.html3)
+                    }
+
+
+                } else {
+                    $scope.html = '<tr>' +
+                        '<td width="5%">' + val.name + '</td>' +
+                        '<td width="5%">' + val.month + '</td>' +
+                        '<td width="5%">' + val.grad + '</td>' +
+                        '<td width="5%">' + val.zw + '</td>' +
+                        '<td width="5%">' + val.rzsj + '</td>' +
+                        '<td width="5%">' + val.zt + '</td>' +
+                        '<td width="5%">' + val.hj + '</td>' +
+                        '<td width="5%">' + val.children[0].bm + '</td>' +
+                        '<td width="5%">' + val.children[0].bl + '</td>' +
+                        '<td width="5%">' + val.children[0].gz + '</td>' +
+                        '<td width="5%">' + val.children[0].btx + '</td>' +
+                        '<td width="5%">' + val.children[0].kkx + '</td>' +
+                        '</tr>';
+                    $scope.tbody.push($scope.html);
+                }
+            });
+            $scope.innerHTML = $scope.tbody.join('');
+            var template = angular.element($scope.innerHTML);
+            var mobileDialogElement = $compile(template)($scope);
+            angular.element('#html').append(mobileDialogElement);
+
+        });
+</script>
 </html>
