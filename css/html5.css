@@ -1,0 +1,158 @@
+body{
+    background-color:#CCCCCC;
+    font-family:Geneva,Arial,Helvetica,Sans-Serif,New-roman;
+    margin: 1px auto;
+    max-width: 1600px;
+    border:solid;
+    border-color:#FFBBEE;
+}
+
+header{
+    background-color:#F47D31;
+    display:block;
+    color:#FFFFFF;
+    text-align:center;
+}
+
+header h2{
+    margin: 0px;
+}
+
+h1{
+    font-size: 122px;
+    margin: 0px;
+}
+
+h2{
+    font-size : 24px;
+    margin:0px;
+    text-align:center;
+    color:#F47d31;
+}
+
+h3{
+    font-size:18px;
+    margin: 0px;
+    text-align:center;
+    color:#f47D31;
+}
+
+h4{
+    color:#F47D31;
+    background-color:#fff;
+    -webkit-box-shadow: 2px 2px 20px #888;
+    -webkit-transform: rotate(-45deg);
+    -moz-box-shadow: 2px 2px 20px #888;
+    -moz-transform: rotate(-45deg);
+    position:absolute;
+    padding: 0px 150px;
+    top:50px;
+    left:-120px;
+    text-align:center;
+}
+
+nav{
+    display:block;
+    width:25%;
+    float:left;
+}
+
+nav a:link, nav a:visited{
+    display : block;
+    border-bottom:3px solid #fff;
+    padding: 10px;
+    text-decoration:none;
+    font-weight: blod;
+    margin: 5px;
+}
+
+nav a:hover{
+    color:white;
+    background-color:#F47D31;
+}
+
+nav h3{
+    margin:25px;
+    color:white;
+}
+
+#container{
+    background-color:#888;
+}
+
+section{
+    display:block;
+    width:50%;
+    float:left;
+}
+
+article{
+    background-color:#eee;
+    display:block;
+    margin: 12px;
+    padding : 20px;
+    -webkit-boder-radius: 12px;
+    -moz-boder-radius: 12px;
+    border-radius: 12px;
+    -webkit-transform: rotate(-10deg);
+    -webkit-box-shadow: 2px 2px 20px #888;
+    -moz-transform: rotate(-4deg);
+    -moz-box-shadow: 2px 2px 20px #888;
+}
+
+article header{
+    -webkit-border-radius: 10px;
+    border-radius:10px;
+    padding :8px;
+}
+
+article footer{
+    -webkit-border-radius:10px;
+    -moz-border-radius: 10px;
+    border-radius:10px;
+    padding:8px;
+}
+
+article h1{
+    font-size:18px;
+}
+
+aside {
+    display:block;
+    width:25%;
+    float:left;
+}
+
+aside h3{
+    margin:15px;
+    color:white;
+}
+
+aside p{
+    margin:15px;
+    color:white;
+    font-weight:blod;
+    font-style:italic;
+}
+
+footer{
+    clear:both;
+    display:block;
+    background-color:#F47d31;
+    color:#FFFFFF;
+    text-align:center;
+    padding:15px;
+}
+
+footer h2{
+    font-size:14px;
+    color:white;
+}
+
+a{
+    color:#F47d31;
+}
+
+a:hover{
+    text-decoration:underline;
+}
