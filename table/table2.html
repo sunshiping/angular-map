@@ -272,17 +272,16 @@
             $scope.$watch('allType', function (newVal, oldVal) {
                 $scope.type2 = [];
                 $scope.fixation2 = [];
-                $scope.html3 = [];
                 angular.forEach(newVal, function (type, index) {
                     if (type.nape == 2 && type.select == true) {
                         $scope.type2.push(type);
                     }
                 });
                 angular.element('#html').empty();
-                $scope.draw(newVal);
+                $scope.draw();
             }, true);
 
-            $scope.draw = function (dataType) {
+            $scope.draw = function () {
                 $scope.tbody = [];
                 $scope.oldDate = angular.copy($scope.data);
                 angular.forEach($scope.oldDate, function (val, index) {
