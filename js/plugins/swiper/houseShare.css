@@ -1,0 +1,488 @@
+/*ȫ����ʽ*/
+body,
+html {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+body {
+    font-family: "Microsoft YaHei";
+    font-size: 2vw;
+    color: #333;
+}
+a {
+    font-size: 2vw;
+    color: #333;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+div,
+ul,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+* {
+    box-sizing: border-box;
+}
+i {
+    display: inline-block;
+}
+/*��ҳ����*/
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+/*��ҳ*/
+.top {
+    height: 39vw;
+    position: relative;
+    text-align: center;
+}
+.top > img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.top > div {
+    height: 100%;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+.top > div p {
+    width: 21.5vw;
+    height: 21.5vw;
+    line-height: 6vw;
+    font-size: 5.3vw;
+    padding: 4vw;
+    border: 2px solid #D3F2ED;
+    border-radius: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+}
+ul.comm {
+    padding: 4.5vw 7.5vw;
+}
+ul.comm li {
+    width: 100%;
+    line-height: 8vw;
+    font-size: 3.5vw;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+ul.comm li span {
+    display: inline-block;
+    width: 17vw;
+    color: #838283;
+    text-align: right;
+}
+ul.comm li b {
+    font-weight: normal;
+    color: #4aa2fe;
+}
+.louShare {
+    background: #99CFFF url('/img/shareBg.jpg') no-repeat;
+    background-size: cover;
+    height: 100vh;
+    /*height: 100%;*/
+    padding-top: 12vw;
+    position: relative;
+}
+.louShare .logo {
+    font-size: 5.3vw;
+}
+.louShare .logo > img {
+    width: 20vw;
+    margin: 0 auto;
+}
+.louShare .logo p {
+    color: #001C48;
+    font-weight: bold;
+}
+.louShare .cover {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 6.7vw 0 10.7vw;
+    position: absolute;
+    bottom: 0;
+}
+.louShare .house-title {
+    font-size: 6vw;
+}
+.louShare .house-address {
+    font-size: 4vw;
+    padding: 2vw 4.6vw;
+    margin: 4vw 6.7vw;
+    border: 1px dotted #8B949E;
+}
+.louShare .house-address i {
+    background: url('/img/icon-wz.png') no-repeat;
+    background-size: cover;
+    width: 5vw;
+    height: 5vw;
+    position: relative;
+    top: 2px;
+}
+.louShare .types {
+    margin: 6vw 6.7vw 0;
+}
+.louShare .types .icon {
+    width: 8vw;
+    height: 9.3vw;
+}
+.louShare .types .icon.icon-xqf {
+    background: url('/img/icon-xqf.png') no-repeat;
+    background-size: cover;
+}
+.louShare .types .icon.icon-dtf {
+    background: url('/img/icon-dtf.png') no-repeat;
+    background-size: cover;
+}
+.louShare .types .icon.icon-wu {
+    background: url('/img/icon-wu.png') no-repeat;
+    background-size: cover;
+}
+.louShare .types .icon.icon-di {
+    background: url('/img/icon-di.png') no-repeat;
+    background-size: cover;
+}
+.louShare .types .icon-title {
+    font-size: 4vw;
+    color: #00B289;
+}
+.houseDet > .row {
+    margin: 8.5vw 0 6.5vw;
+}
+.houseDet > .row .col-md-4.col-sm-4.col-xs-4 {
+    text-align: center;
+}
+.houseDet > .row .col-md-4.col-sm-4.col-xs-4 div {
+    width: 16vw;
+    height: 16vw;
+    line-height: 7vw;
+    font-size: 5vw;
+    color: #00B289;
+    padding: 4vw;
+    margin: 0 auto;
+    border: 2px solid #00B289;
+    border-radius: 100%;
+    background-color: #F8F8F8;
+    position: relative;
+}
+.houseDet > .row .col-md-4.col-sm-4.col-xs-4 div span {
+    display: inline-block;
+    width: 6vw;
+    height: 6vw;
+    line-height: 5vw;
+    font-size: 3.2vw;
+    /*border: 2px solid #00B289;*/
+    border-radius: 100%;
+    background:#F8F8F8 url('/img/icon-ellipse.png') no-repeat;
+    background-size:cover;
+    position: absolute;
+    right: -10px;
+    bottom: 3px;
+    z-index: 20;
+}
+.houseDet > .row p {
+    font-size: 4.8vw;
+    margin-top: 2vw;
+    font-weight: 600;
+}
+.houseDet .text {
+    line-height: 7vw;
+    font-size: 3.5vw;
+    color: #838283;
+    padding: 4.5vw 0;
+    margin: 0 5.5vw;
+    border-top: 1px solid #DFDFDF;
+    border-bottom: 1px solid #DFDFDF;
+    text-indent: 2em;
+}
+.houseDet .text .text-detail{
+    overflow: hidden;
+    max-height: 35vw;
+}
+.houseDet .text-right {
+    display: none;
+}
+.houseDet .text a {
+    font-size: 3.5vw;
+    color: #00B289;
+}
+.assort .row {
+    margin: 0;
+    padding: 0 4vw;
+    margin-bottom: 6vw;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 div {
+    min-height: 44vw;
+    padding: 2.7vw 0;
+    margin: 3vw 0;
+    background-color: #F9F9F9;
+    border: 1px solid #DFDFDF;
+    border-radius: 5px;
+    box-shadow: 0 0 1.5vw rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 h1 b{
+    display: inline-block;
+    width:14vw;
+    height:1vw;
+    position: absolute;
+    top:5.5vw;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 h1 b.lf{
+    background: url("/img/line1.png") no-repeat;
+    background-size: cover;
+    left:2vw;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 h1 b.rt{
+    background: url("/img/line2.png") no-repeat;
+    background-size: cover;
+    right:2vw;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 div h1 {
+    font-size: 4.8vw;
+    color: #fff;
+    padding: 1vw;
+    background-color: #9dc44a;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 div h1.orange {
+    background-color: #F59C3D;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 div h1.green {
+    background-color: #50C5BE;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 div h1.blue {
+    background-color: #4BB0F6;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 div p {
+    font-size: 3.5vw;
+    color: #838283;
+    margin: 2.7vw 0;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 div ul {
+    padding-left: 9vw;
+    text-align: left;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 div ul li {
+    line-height: 7vw;
+    font-size: 4vw;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 div ul i {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-right: 1.5vw;
+    border: 0.6vw solid #00B289;
+    border-radius: 100%;
+    position: relative;
+    bottom: 0.9vw;
+}
+.assort .col-md-6.col-sm-6.col-xs-6 {
+    padding: 0;
+}
+.assort .col-md-6.col-sm-6.col-xs-6:nth-child(2n) {
+    padding-left: 2vw;
+}
+.assort .col-md-6.col-sm-6.col-xs-6:nth-child(2n-1) {
+    padding-right: 2vw;
+}
+.housePic > .main {
+    padding: 6.7vw;
+}
+.housePic .content {
+    height: 65vw;
+    padding: 8vw 2.7vw 6.7vw;
+    background-color: #627CA8;
+    border-top: 1px solid #4C6185;
+    box-shadow: 0 0 2vw rgba(0, 0, 0, 0.6);
+}
+.housePic .content .pict {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.housePic .content .pict p {
+    font-size: 4.8vw;
+    color: #e2f4f0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -7.5vw;
+}
+.housePic .content .pict ul{
+    margin:0;
+    position: relative;
+}
+.housePic .content .pict li{
+    margin-bottom: 10px;
+    position:absolute;
+    top:0;
+    left:0;
+    height: 155px;
+    overflow: hidden;
+}
+.housePic .content .pict li a{
+    /*display: block;*/
+    width:100%;
+}
+.housePic .content .pict img{
+    width:100%;
+    height: 100%;
+}
+.housePic .content .pict b {
+    display: inline-block;
+    width: 4.9vw;
+    height: 25vw;
+    background: url('/img/roleleft.png') no-repeat;
+    background-size: cover;
+    position: absolute;
+    top:-27vw;
+}
+.housePic .content .pict b.lf {
+    left: 13.7vw;
+}
+.housePic .content .pict b.rt {
+    background: url('/img/roleright.png') no-repeat;
+    background-size: cover;
+    right: 13.7vw;
+}
+.housePic .hxt{
+    margin-bottom: 13.3vw;
+}
+.housePic .jgt {
+    margin-bottom: 13.3vw;
+    background-color: #6AB640;
+    border-top-color: #5A7F2A;
+}
+.housePic .ptt {
+    margin-bottom: 13.3vw;
+    background-color: #3593F6;
+    border-top-color: #2B77C6;
+}
+.housePic .ktt {
+    margin-bottom: 13.3vw;
+    background-color: #35d2f6;
+    border-top-color: #2B77C6;
+}
+/*-- @font-face-start --*/
+@font-face {
+    font-family: 'iconfont';
+    src: url('/img/iconfont/iconfont.eot');
+    src: url('/img/iconfont/iconfont.eot?#iefix') format('embedded-opentype'), url('/img/iconfont/iconfont.woff') format('woff'), url('/img/iconfont/iconfont.ttf') format('truetype'), url('/img/iconfont/iconfont.svg#iconfont') format('svg');
+}
+.iconfont {
+    margin-right: 5px;
+    font-family: "iconfont";
+    font-style: normal;
+}
+.transport > div.container {
+    line-height: 7vw;
+    font-size: 3.5vw;
+    margin: 3vw 0;
+}
+.transport .address #map {
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    margin-bottom: 5vw;
+    border-top: 1vw solid #8095BA;
+    border-bottom: 1vw solid #8095BA;
+    overflow: hidden;
+}
+.transport .address ul li {
+    width: 24%;
+    padding: 0;
+    margin: 3vw 0 4vw;
+    text-align: center;
+}
+.transport .address ul li.last {
+    width: 23%;
+}
+.transport .address ul a {
+    display: block;
+    font-size: 3.5vw;
+    padding: 1vw;
+    background-color: transparent;
+    border-radius: 5vw;
+}
+.transport .address ul li.active a {
+    background-color: #00B289;
+    color: #fff;
+}
+.transport .address ul li.active a i {
+    background-color: transparent;
+}
+.transport .address ul i {
+    width: 5.5vw;
+    height: 5.5vw;
+    line-height: 5.5vw;
+    color: #fff;
+    border-radius: 100%;
+    background-color: #6CCDBA;
+}
+.trend > .container {
+    margin-top: 8vw;
+}
+.trend .panel {
+    border-radius: 0;
+    border-color:#f5f5f5;
+    box-shadow: none;
+}
+.trend .panel-heading {
+    font-size: 4vw;
+    padding:2vw 3vw;
+    border-color:#f5f5f5;
+    position: relative;
+}
+.trend .panel-heading i {
+    width: 0;
+    height: 0;
+    border: 5vw solid transparent;
+    border-top-color: #f5f5f5;
+    position: absolute;
+    bottom: -8vw;
+    left: 10vw;
+}
+.trend .panel-body {
+    padding: 4vw 1.5vw;
+}
+.trend .chartTop {
+    font-size: 2.5vw;
+    color: #838283;
+    margin:3vw 0;
+}
+.trend .chartTop span {
+    font-size: 3.5vw;
+    color: #FA5C2C;
+}
+.trend .chartTop i {
+    width: 1.5vw;
+    height: 3vw;
+    background: url('/img/arrow.png') no-repeat;
+    background-size: cover;
+}
+.trend #chart {
+    width: 100%;
+    height: 75vw;
+    margin-top: 5vw;
+}

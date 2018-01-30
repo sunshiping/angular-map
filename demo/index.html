@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <style type="text/css">
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+
+        #allmap {
+            width: 500px;
+            height: 500px;
+        }
+
+        .BMap_vectex_node {
+            background-image: none !important;
+            border: 1px solid red;
+            border-radius: 11px;
+        }
+
+    </style>
+    <title>圆形区域搜索</title>
+</head>
+<body>
+ 
+<div id="allmap"></div>
+<script type="text/javascript" src="../app/lib/jquery/1.11.3/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+        src="http://api.map.baidu.com/api?v=2.0&ak=PpZVilVQOrUS4oyyF5XroQq6GybcMVUZ"></script>
+<script type="text/javascript">
+
+
+//    var map     = new BMap.Map("allmap");
+//    var mPoint = new BMap.Point(113.756082, 34.767741); // 初始化地图中心点
+//    var myIcon  = new BMap.Icon("/img/icon-logo-no-word.png", new BMap.Size(95, 86));
+//    var marker2 = new BMap.Marker(mPoint, {icon: myIcon});  // 创建标注
+//
+//    map.centerAndZoom(mPoint, 16);
+//
+//    map.addOverlay(marker2);              // 将标注添加到地图中
+//    map.addOverlay(new BMap.Circle(mPoint, 500, {
+//        fillColor    : "#E2E8F1",
+//        strokeWeight : 1,
+//        strokeColor  : "blue",
+//        fillOpacity  : 0.3,
+//        strokeOpacity: 0.3
+//    }));        //添加一个圆形覆盖物
+
+
+var map = new BMap.Map("allmap");
+var mPoint = new BMap.Point(116.274625,39.961627); // 初始化地图中心点
+var myIcon = new BMap.Icon("arrow.png", new BMap.Size(10, 23));
+var marker2 = new BMap.Marker(mPoint);  // 创建标注
+map.centerAndZoom(mPoint, 16);
+map.centerAndZoom(mPoint, 16);
+
+map.addOverlay(marker2);              // 将标注添加到地图中
+map.addOverlay(new BMap.Circle(mPoint, 500, {
+    fillColor    : "#E2E8F1",
+    strokeWeight : 1,
+    strokeColor  : "blue",
+    fillOpacity  : 0.3,
+    strokeOpacity: 0.3
+}));        //添加一个圆形覆盖物
+
+
+var local = new BMap.LocalSearch(map, {
+    renderOptions: {map: map}
+});
+var pStart = new BMap.Point(116.274625, 39.961627);
+var pEnd = new BMap.Point(116.367474, 39.988609);
+var bs = new BMap.Bounds(pStart, pEnd); //自己规定范围
+local.searchInBounds("银行", bs);
+var polygon = new BMap.Circle(mPoint, {strokeColor: "blue", strokeWeight: 6, strokeOpacity: 0.5});
+map.addOverlay(polygon);
+</script>
+</body>
+</html>

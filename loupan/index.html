@@ -119,31 +119,31 @@
                         <span>高新区科学大道与西四环交叉口西北侧</span>
                     </div>
                     <!--<ul class="kinds list-inline ani" swiper-animate-effect="bounceInLeft"-->
-                        <!--swiper-animate-duration="1.5s" swiper-animate-delay="1s">-->
-                        <!--<li>-->
-                            <!--<a href="">-->
-                                <!--<i></i>-->
-                                <!--<p>学区房</p>-->
-                            <!--</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">-->
-                                <!--<i class="icon-dtf"></i>-->
-                                <!--<p>地铁房</p>-->
-                            <!--</a>-->
-                        <!--</li>-->
-                        <!--&lt;!&ndash;<li>-->
-                            <!--<a href="">-->
-                                <!--<i class="icon-wu"></i>-->
-                                <!--<p>满五年</p>-->
-                            <!--</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="">-->
-                                <!--<i class="icon-di"></i>-->
-                                <!--<p>低首付</p>-->
-                            <!--</a>-->
-                        <!--</li>&ndash;&gt;-->
+                    <!--swiper-animate-duration="1.5s" swiper-animate-delay="1s">-->
+                    <!--<li>-->
+                    <!--<a href="">-->
+                    <!--<i></i>-->
+                    <!--<p>学区房</p>-->
+                    <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="">-->
+                    <!--<i class="icon-dtf"></i>-->
+                    <!--<p>地铁房</p>-->
+                    <!--</a>-->
+                    <!--</li>-->
+                    <!--&lt;!&ndash;<li>-->
+                    <!--<a href="">-->
+                    <!--<i class="icon-wu"></i>-->
+                    <!--<p>满五年</p>-->
+                    <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<a href="">-->
+                    <!--<i class="icon-di"></i>-->
+                    <!--<p>低首付</p>-->
+                    <!--</a>-->
+                    <!--</li>&ndash;&gt;-->
                     <!--</ul>-->
                 </div>
             </div>
@@ -553,10 +553,29 @@
 
     //小区图片
     $(document).ready(function () {
-        $("#auto-loop1").lightGallery({
+        var $methods = $('#auto-loop1');
+        var slide = '<li data-src="img/jingguan.png">' +
+            '<a href=""><img src="img/jingguan.png" alt=""/></a>' +
+            '</li>';
+
+        $methods.lightGallery({
             loop: true,
             auto: true,
-            pause: 4000
+            pause: 4000,
+            dynamic: true,
+            dynamicEl: [{
+                "src": 'img/jingguan.png',
+                'thumb': 'img/jingguan.png'
+            }, {
+                "src": 'img/jingguan.png',
+                'thumb': 'img/jingguan.png'
+            }, {
+                "src": 'img/jingguan.png',
+                'thumb': 'img/jingguan.png'
+            }],
+            onSlideNext: function () {
+                debugger;
+            }
         });
         $("#auto-loop2").lightGallery({
             loop: true,

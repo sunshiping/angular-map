@@ -1,62 +1,70 @@
 /** ==========================================================
 
-* jquery lightGallery.js v1.1.0
-* http://sachinchoolur.github.io/lightGallery/
-* Released under the Apache License - http://opensource.org/licenses/Apache-2.0
+ * jquery lightGallery.js v1.1.0
+ * http://sachinchoolur.github.io/lightGallery/
+ * Released under the Apache License - http://opensource.org/licenses/Apache-2.0
 
-=========================================================/**/
+ =========================================================/**/
 ;
 (function ($) {
     "use strict";
     $.fn.lightGallery = function (options) {
         var defaults = {
-            mode: 'slide',
-            useCSS: true,
-            easing: 'linear', //'cubic-bezier(0.25, 0, 0.25, 1)',//
-            speed: 1000,
-            closable: true,
-            loop: false,
-            auto: false,
-            pause: 4000,
-            escKey: true,
-            rel: false,
-            lang: {
-                allPhotos: '所有图片'
+                mode: 'slide',
+                useCSS: true,
+                easing: 'linear', //'cubic-bezier(0.25, 0, 0.25, 1)',//
+                speed: 1000,
+                closable: true,
+                loop: false,
+                auto: false,
+                pause: 4000,
+                escKey: true,
+                rel: false,
+                lang: {
+                    allPhotos: '所有图片'
+                },
+                exThumbImage: false,
+                index: false,
+                thumbnail: true,
+                caption: false,
+                captionLink: false,
+                desc: false,
+                counter: false,
+                controls: true,
+                hideControlOnEnd: false,
+                mobileSrc: false,
+                mobileSrcMaxWidth: 640,
+                //touch
+                swipeThreshold: 50,
+                vimeoColor: 'CCCCCC',
+                videoAutoplay: true,
+                videoMaxWidth: 855,
+                dynamic: false,
+                //callbacks
+                dynamicEl: [],
+                onOpen: function () {
+                },
+                onSlideBefore: function () {
+                },
+                onSlideAfter: function () {
+                },
+                onSlideNext: function () {
+                },
+                onSlidePrev: function () {
+                },
+                onBeforeClose: function () {
+                },
+                onCloseAfter: function () {
+                }
             },
-            exThumbImage: false,
-            index: false,
-            thumbnail: true,
-            caption: false,
-            captionLink: false,
-            desc: false,
-            counter: false,
-            controls: true,
-            hideControlOnEnd: false,
-            mobileSrc: false,
-            mobileSrcMaxWidth: 640,
-            //touch
-            swipeThreshold: 50,
-            vimeoColor: 'CCCCCC',
-            videoAutoplay: true,
-            videoMaxWidth: 855,
-            dynamic: false,
-            //callbacks
-            dynamicEl: [],
-            onOpen: function () {},
-            onSlideBefore: function () {},
-            onSlideAfter: function () {},
-            onSlideNext: function () {},
-            onSlidePrev: function () {},
-            onBeforeClose: function () {},
-            onCloseAfter: function () {}
-        },
             el = $(this),
             $children,
             index,
             lightGalleryOn = false,
             html = '<div id="lightGallery-outer"><div id="lightGallery-Gallery"><div id="lightGallery-slider"></div><a id="lightGallery-close" class="close"></a></div></div>',
             isTouch = document.createTouch !== undefined || ('ontouchstart' in window) || ('onmsgesturechange' in window) || navigator.msMaxTouchPoints,
-            $gallery, $galleryCont, $slider, $slide, $prev, $next, prevIndex, $thumb_cont, $thumb, windowWidth, interval, usingThumb = false,
+            $gallery, $galleryCont, $slider, $slide, $prev, $next, prevIndex, $thumb_cont, $thumb, windowWidth,
+            interval, usingThumb = false,
             aTiming = false,
             aSpeed = false;
         var settings = $.extend(true, {}, defaults, options);
@@ -106,7 +114,7 @@
                 this.slideTo();
                 this.buildThumbnail();
                 this.keyPress();
-                if(settings.index) {
+                if (settings.index) {
                     this.slide(settings.index);
                 }
                 else {
@@ -139,11 +147,11 @@
             },
             closeSlide: function () {
                 var $this = this;
-                if(settings.closable) {
+                if (settings.closable) {
                     $('.lightGallery-slide')
-                        .on('click', function(event) {
+                        .on('click', function (event) {
                             console.log(event.target);
-                            if($(event.target).is('.lightGallery-slide')) {
+                            if ($(event.target).is('.lightGallery-slide')) {
                                 $this.destroy();
                             }
                         })
@@ -178,27 +186,27 @@
             },
             enableTouch: function () {
                 var $this = this;
-                if (isTouch){
+                if (isTouch) {
                     var startCoords = {},
                         endCoords = {};
-                    $('body').on('touchstart.lightGallery', function(e) {
+                    $('body').on('touchstart.lightGallery', function (e) {
                         endCoords = e.originalEvent.targetTouches[0];
                         startCoords.pageX = e.originalEvent.targetTouches[0].pageX;
                         startCoords.pageY = e.originalEvent.targetTouches[0].pageY;
                     });
-                    $('body').on('touchmove.lightGallery', function(e) {
+                    $('body').on('touchmove.lightGallery', function (e) {
                         var orig = e.originalEvent;
                         endCoords = orig.targetTouches[0];
                         e.preventDefault();
                     });
-                    $('body').on('touchend.lightGallery', function(e) {
+                    $('body').on('touchend.lightGallery', function (e) {
                         var distance = endCoords.pageX - startCoords.pageX,
-                        swipeThreshold = settings.swipeThreshold;
-                        if( distance >= swipeThreshold ){
+                            swipeThreshold = settings.swipeThreshold;
+                        if (distance >= swipeThreshold) {
                             $this.prevSlide();
                             clearInterval(interval);
                         }
-                        else if( distance <= - swipeThreshold ){
+                        else if (distance <= -swipeThreshold) {
                             $this.nextSlide();
                             clearInterval(interval);
                         }
@@ -360,7 +368,8 @@
                         if (settings.dynamic == true) {
                             description = settings.dynamicEl[i]['desc'];
                         } else {
-                            description = $children.eq(i).attr('data-desc');;
+                            description = $children.eq(i).attr('data-desc');
+                            ;
                         }
                         if (typeof description == 'undefined' || description == null) {
                             description = 'image ' + i + '';
@@ -373,10 +382,10 @@
                     }
                 }
             },
-            counter: function() {
+            counter: function () {
                 if (settings.counter === true) {
                     var slideCount = $("#lightGallery-slider > div").length;
-                    $gallery.append("<div id='lightGallery_counter'><span id='lightGallery_counter_current'></span> / <span id='lightGallery_counter_all'>"+slideCount+"</span></div>");
+                    $gallery.append("<div id='lightGallery_counter'><span id='lightGallery_counter_current'></span> / <span id='lightGallery_counter_all'>" + slideCount + "</span></div>");
                 }
             },
             buildThumbnail: function () {
@@ -492,6 +501,7 @@
                 });
             },
             nextSlide: function () {
+                // debugger;
                 var $this = this;
                 index = $slide.index($slide.eq(prevIndex));
                 if (index + 1 < $children.length) {
@@ -553,8 +563,8 @@
                         $slider.addClass('slide');
                     }
                     /*                  if(this.doCss()){
-                        $slider.css({ 'transform' : 'translate3d('+(-index*100)+'%, 0px, 0px)' });
-                    }*/
+                     $slider.css({ 'transform' : 'translate3d('+(-index*100)+'%, 0px, 0px)' });
+                     }*/
                     if (!this.doCss() && !lightGalleryOn) {
                         $slider.css({
                             left: (-index * 100) + '%'
@@ -613,7 +623,7 @@
                 lightGalleryOn = true;
                 usingThumb = false;
                 if (settings.counter) {
-                    $("#lightGallery_counter_current").text(index+1);
+                    $("#lightGallery_counter_current").text(index + 1);
                 }
             },
             destroy: function () {

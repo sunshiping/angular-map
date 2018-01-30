@@ -19,9 +19,9 @@
             <div class="weui-cell__bd">
                 <p>cell standard</p>
             </div>
-            <div class="weui-cell__ft" v-on:click="showMessage">{{message}}</div>
+            <div class="weui-cell__ft" v-on:click="showMessage()">{{message}}</div>
         </a>
-        <a class="weui-cell weui-cell_access" href="javascript:;" v-on:keyup.enter="showAlert">
+        <a class="weui-cell weui-cell_access" href="javascript:;" v-on:keyup.enter="showAlert()">
             <div class="weui-cell__bd">
                 <p>cell standard</p>
             </div>
@@ -54,6 +54,10 @@
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript" src="js/vueComponent.js"></script>
 <script type="text/javascript">
+
+    angular.forEach($scope.data, function (val, index) {
+
+    });
     var demo = new Vue({
         el: '#app',
         data: {
@@ -76,7 +80,7 @@
                 this._data.show = !this._data.show;
                 console.log(this);
             },
-            showAlert:function(){
+            showAlert: function () {
                 alert('键盘事件')
             }
         }

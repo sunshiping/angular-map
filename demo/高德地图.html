@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>高德地图</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main.css"/>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=22dac30c7c46d8db86d7e72ded6eab76"></script>
+</head>
+<body>
+<div id="mapContainer"></div>
+<script type="text/javascript">
+    var editorTool;
+    //初始化地图对象，加载地图
+    map = new AMap.Map("mapContainer", {
+        resizeEnable: true,
+        //二维地图显示视口
+        center: [116.403322, 39.900255],//地图中心点
+        zoom: 15 //地图显示的缩放级别
+    });
+
+    var circle = new AMap.Circle({
+        center: [116.403322, 39.900255],// 圆心位置
+        radius: 500, //半径
+        strokeColor: "#F33", //线颜色
+        strokeOpacity: 1, //线透明度
+        strokeWeight: 3, //线粗细度
+        fillColor: "#ee2200", //填充颜色
+        fillOpacity: 0.35//填充透明度
+    });
+    circle.setMap(map);
+
+    circle.on('change', function(){
+        console.log(circle.getRadius());
+        console.log(circle.getCenter());
+    });
+
+    //添加圆编辑控件
+    map.plugin(["AMap.CircleEditor"], function() {
+        editorTool = new AMap.CircleEditor(map, circle);
+        editorTool.open();
+    });
+
+    //添加自定义点标记
+    addMarker();
+
+    //添加带文本的点标记覆盖物
+    function addMarker(){
+        //自定义点标记内容
+        var markerContent = document.createElement("div");
+        markerContent.className = "markerContentStyle";
+
+        //点标记中的图标
+        var markerImg = document.createElement("img");
+        markerImg.className = "markerlnglat";
+        markerImg.style.width = '60px';
+        markerImg.style.height = '60px';
+        markerImg.style.borderRadius = '60px';
+        markerImg.src = "http://img1.touxiang.cn/uploads/20131114/14-065802_226.jpg";
+        markerContent.appendChild(markerImg);
+
+        //点标记中的文本
+        var markerSpan = document.createElement("span");
+        markerSpan.innerHTML = "我是自定义样式的点标记哦！";
+        markerContent.appendChild(markerSpan);
+
+        //添加标记
+        var marker = new AMap.Marker({
+            map:map,
+            position: new AMap.LngLat(116.397428,39.90923), //基点位置
+            offset: new AMap.Pixel(-18,-36), //相对于基点的偏移位置
+            draggable: true,  //是否可拖动
+            // content: markerContent   //自定义点标记覆盖物内容
+        });
+        marker.setMap(map);  //在地图上添加点
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <title>MapIndex</title>
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #container {
+            height: 100%;
+        }
+    </style>
+    <script type="text/javascript" src="../app/lib/jquery/1.11.3/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=PpZVilVQOrUS4oyyF5XroQq6GybcMVUZ"></script>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript">
+    function message(obj, unitname, unittype, licenseid, address) {
+        var opts = {
+            width: 250,
+            height: 100,
+            title: unitname
+        }
+        var infoWindow = new BMap.InfoWindow("企业类型：" + unittype + "<br>" + "地址：" + address, opts);  // 创建信息窗口对象
+        obj.openInfoWindow(infoWindow, map.getCenter());
+    }
+
+    function addMarker(point, marker, unitname, unittype, licenseid, address) {  // 创建图标对象
+        map.addOverlay(marker);
+        marker.addEventListener("click", function () {
+            message(this, unitname, unittype, licenseid, address);
+        });
+    }
+
+    function InitMap() {
+        var data = [
+            {
+                longitude: "113.77383400",
+                latitude: "34.75064000",
+                address: "金水区东明路与明鸿路交叉口向东200米路北",
+                name: "非常国际店(已转移)"
+            },
+            {
+                longitude: "113.76858800",
+                latitude: "34.78755400",
+                address: "地润路众意西路交叉口向东150米路南",
+                name: "绿城百合店"
+            },
+            {
+                longitude: "113.76632500",
+                latitude: "34.71761400",
+                address: "金水区东明路与明鸿路交叉口向东500米路北",
+                name: "非常国际店"
+            },
+            {
+                longitude: "113.64964400",
+                latitude: "34.75661000",
+                address: "中州大道民航路交叉口向西100米路南21世纪不动产",
+                name: "广汇店"
+            },
+            {
+                longitude: "113.76517500",
+                latitude: "34.70749500",
+                address: "经三路与东风路往西100米路南金城国际广场6#西单元2004室",
+                name: "景弘金城店"
+            }
+        ];
+        //百度地图API方法，所有标注点弹出的提示框中的内容都是最后一个地标信息的内容
+        for (var i = 0; i < data.length; i++) {
+            var p = new BMap.Point(data[i].longitude, data[i].latitude);  // 创建点坐标
+            var m = new BMap.Marker(p);  // 创建标注
+            map.addOverlay(m);              // 将标注添加到地图中
+
+            var opts = {
+                width: 250,     // 信息窗口宽度
+                height: 100,     // 信息窗口高度
+                title: "企业名称：" + data[i].name, // 信息窗口标题
+            }
+            var infoWindow = new BMap.InfoWindow("企业类型：" + data[i].name + "<br>" + "地址：" + data[i].address, opts);  // 创建信息窗口对象
+            m.addEventListener("click", function () {
+                map.openInfoWindow(infoWindow, p); //开启信息窗口
+            });
+        }
+
+        for (var i = 0; i < data.length; i++) {
+            var point = new BMap.Point(data[i].longitude, data[i].latitude);  // 创建点坐标
+            var marker = new BMap.Marker(point);  // 创建标注
+            addMarker(point, marker, data[i].name, data[i].name, data[i].address);
+        }
+    }
+
+    var map = new BMap.Map("container");          // 创建地图实例
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    map.addControl(new BMap.NavigationControl());
+    map.addControl(new BMap.ScaleControl());
+    map.addControl(new BMap.OverviewMapControl());
+    var point = new BMap.Point(113.770888, 34.719928);  // 创建点坐标
+    var marker = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker);              // 将标注添加到地图中
+    map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+    InitMap();
+</script>
+</body>
+</html>

@@ -284,6 +284,7 @@
             $scope.draw = function () {
                 $scope.tbody = [];
                 $scope.oldDate = angular.copy($scope.data);
+                debugger;
                 angular.forEach($scope.oldDate, function (val, index) {
                     $scope.html2 = '<tr>' +
                         '<td width="5%" rowspan="' + val.children.length + '" ng-class="{ \'selected\' : fixation[0].select != true }">' + val.name + '</td>' +
